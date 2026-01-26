@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SmartAgricultureSystem-impl" default="default" basedir="..">
+    <target name="default" depends="compile,run"/>
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" includeantruntime="false">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+    <target name="run" depends="compile">
+        <java classname="com.agriculture.ui.DashboardForm" fork="true">
+            <classpath>
+                <pathelement location="build/classes"/>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </java>
+    </target>
+</project>
