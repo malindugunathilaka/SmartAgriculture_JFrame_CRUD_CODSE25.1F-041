@@ -1,4 +1,5 @@
 package com.agriculture.model;
+
 import java.sql.Timestamp;
 
 public class Crop {
@@ -8,7 +9,18 @@ public class Crop {
     private Timestamp createdAt;
 
     public Crop() {}
-    public Crop(String cropName, String cropType) { this.cropName = cropName; this.cropType = cropType; }
+
+    public Crop(String cropName, String cropType) {
+        this.cropName = cropName;
+        this.cropType = cropType;
+    }
+
+    public Crop(int cropId, String cropName, String cropType) {
+        this.cropId = cropId;
+        this.cropName = cropName;
+        this.cropType = cropType;
+    }
+
     public int getCropId() { return cropId; }
     public void setCropId(int cropId) { this.cropId = cropId; }
     public String getCropName() { return cropName; }
@@ -17,4 +29,9 @@ public class Crop {
     public void setCropType(String cropType) { this.cropType = cropType; }
     public Timestamp getCreatedAt() { return createdAt; }
     public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
+    
+    @Override
+    public String toString() {
+        return cropId + " - " + cropName;
+    }
 }

@@ -11,9 +11,14 @@ public class Production {
     private String seasonName;
 
     public Production() {}
+
     public Production(int farmerId, int cropId, int seasonId, double quantity) {
-        this.farmerId = farmerId; this.cropId = cropId; this.seasonId = seasonId; this.quantity = quantity;
+        this.farmerId = farmerId;
+        this.cropId = cropId;
+        this.seasonId = seasonId;
+        this.quantity = quantity;
     }
+
     public int getProductionId() { return productionId; }
     public void setProductionId(int productionId) { this.productionId = productionId; }
     public int getFarmerId() { return farmerId; }

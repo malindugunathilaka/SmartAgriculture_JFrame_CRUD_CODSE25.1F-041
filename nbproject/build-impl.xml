@@ -1,20 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="SmartAgricultureSystem-impl" default="default" basedir="..">
-    <target name="default" depends="compile,run"/>
-    <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes" includeantruntime="false">
+<project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" 
+         xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" 
+         xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" 
+         basedir=".." 
+         default="default" 
+         name="SmartAgricultureSystem-impl">
+
+    <target name="default" depends="jar" description="Build and create JAR."/>
+    
+    <target name="-pre-init">
+        <!-- Empty placeholder for customization -->
+    </target>
+    
+    <target name="-init-private" depends="-pre-init">
+        <property file="nbproject/private/private.properties"/>
+    </target>
+    
+    <target name="-init-user" depends="-init-private">
+        <property file="${user.properties.file}"/>
+    </target>
+    
+    <target name="-init-project" depends="-init-user">
+        <property file="nbproject/project.properties"/>
+    </target>
+    
+    <target name="init" depends="-init-project">
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+    
+    <target name="compile" depends="init" description="Compile project.">
+        <javac srcdir="${src.dir}" 
+               destdir="${build.classes.dir}" 
+               includeantruntime="false"
+               source="${javac.source}" 
+               target="${javac.target}"
+               encoding="${source.encoding}">
             <classpath>
-                <fileset dir="lib" includes="*.jar"/>
+                <pathelement path="${javac.classpath}"/>
             </classpath>
         </javac>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java,**/*.form"/>
+        </copy>
     </target>
-    <target name="run" depends="compile">
-        <java classname="com.agriculture.ui.DashboardForm" fork="true">
+    
+    <target name="jar" depends="compile" description="Create JAR file.">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="run" depends="jar" description="Run project.">
+        <java jar="${dist.jar}" fork="true">
             <classpath>
-                <pathelement location="build/classes"/>
-                <fileset dir="lib" includes="*.jar"/>
+                <pathelement path="${run.classpath}"/>
             </classpath>
         </java>
     </target>
+    
+    <target name="clean" description="Clean build products.">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
 </project>

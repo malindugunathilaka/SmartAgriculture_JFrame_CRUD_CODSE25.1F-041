@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SmartAgricultureSystem" default="default" basedir=".">
-    <description>Builds, tests, and runs the project SmartAgricultureSystem.</description>
+    <description>Builds, tests, and runs the Smart Agriculture System project.</description>
     <import file="nbproject/build-impl.xml"/>
 </project>
